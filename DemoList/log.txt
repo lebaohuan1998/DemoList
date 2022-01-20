@@ -1,0 +1,46 @@
+2022-01-20 16:15:20.395 +07:00 [INF] Now listening on: https://localhost:7228
+2022-01-20 16:15:20.457 +07:00 [INF] Now listening on: http://localhost:5228
+2022-01-20 16:15:20.465 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-01-20 16:15:20.468 +07:00 [INF] Hosting environment: Development
+2022-01-20 16:15:20.470 +07:00 [INF] Content root path: C:\Users\HuanToCon\source\repos\DemoList\DemoList\
+2022-01-20 16:15:22.033 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7228/swagger/index.html - -
+2022-01-20 16:15:22.700 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7228/swagger/index.html - - - 200 - text/html;charset=utf-8 673.9443ms
+2022-01-20 16:15:22.724 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7228/_framework/aspnetcore-browser-refresh.js - -
+2022-01-20 16:15:22.736 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7228/_framework/aspnetcore-browser-refresh.js - - - 200 11942 application/javascript;+charset=utf-8 12.9251ms
+2022-01-20 16:15:23.298 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7228/swagger/v1/swagger.json - -
+2022-01-20 16:15:23.516 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7228/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 217.3553ms
+2022-01-20 16:15:29.094 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7228/WeatherForecast/Student - -
+2022-01-20 16:15:29.112 +07:00 [INF] Executing endpoint 'DemoList.Controllers.WeatherForecastController.GetStudents (DemoList)'
+2022-01-20 16:15:29.131 +07:00 [INF] Route matched with {action = "GetStudents", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.List`1[DemoList.Student] GetStudents() on controller DemoList.Controllers.WeatherForecastController (DemoList).
+2022-01-20 16:15:29.142 +07:00 [INF] huan
+2022-01-20 16:15:29.153 +07:00 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DemoList.Student, DemoList, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-01-20 16:15:29.170 +07:00 [INF] Executed action DemoList.Controllers.WeatherForecastController.GetStudents (DemoList) in 24.4803ms
+2022-01-20 16:15:29.177 +07:00 [INF] Executed endpoint 'DemoList.Controllers.WeatherForecastController.GetStudents (DemoList)'
+2022-01-20 16:15:29.179 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7228/WeatherForecast/Student - - - 200 - application/json;+charset=utf-8 85.4605ms
+2022-01-20 16:15:30.502 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7228/WeatherForecast/Student - -
+2022-01-20 16:15:30.506 +07:00 [INF] Executing endpoint 'DemoList.Controllers.WeatherForecastController.GetStudents (DemoList)'
+2022-01-20 16:15:30.509 +07:00 [INF] Route matched with {action = "GetStudents", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.List`1[DemoList.Student] GetStudents() on controller DemoList.Controllers.WeatherForecastController (DemoList).
+2022-01-20 16:15:30.513 +07:00 [INF] huan
+2022-01-20 16:15:30.516 +07:00 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DemoList.Student, DemoList, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-01-20 16:15:30.519 +07:00 [INF] Executed action DemoList.Controllers.WeatherForecastController.GetStudents (DemoList) in 5.694ms
+2022-01-20 16:15:30.525 +07:00 [INF] Executed endpoint 'DemoList.Controllers.WeatherForecastController.GetStudents (DemoList)'
+2022-01-20 16:15:30.528 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7228/WeatherForecast/Student - - - 200 - application/json;+charset=utf-8 26.5379ms
+2022-01-20 16:20:20.322 +07:00 [INF] Now listening on: https://localhost:7228
+2022-01-20 16:20:20.373 +07:00 [INF] Now listening on: http://localhost:5228
+2022-01-20 16:20:20.380 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-01-20 16:20:20.383 +07:00 [INF] Hosting environment: Development
+2022-01-20 16:20:20.386 +07:00 [INF] Content root path: C:\Users\HuanToCon\source\repos\DemoList\DemoList\
+2022-01-20 16:20:21.696 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7228/swagger/index.html - -
+2022-01-20 16:20:22.369 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7228/swagger/index.html - - - 200 - text/html;charset=utf-8 678.4051ms
+2022-01-20 16:20:22.380 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7228/_framework/aspnetcore-browser-refresh.js - -
+2022-01-20 16:20:22.405 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7228/_framework/aspnetcore-browser-refresh.js - - - 200 11942 application/javascript;+charset=utf-8 24.5981ms
+2022-01-20 16:20:22.914 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7228/swagger/v1/swagger.json - -
+2022-01-20 16:20:23.208 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7228/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 291.5111ms
+2022-01-20 16:20:27.853 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7228/WeatherForecast/Student - -
+2022-01-20 16:20:27.867 +07:00 [INF] Executing endpoint 'DemoList.Controllers.WeatherForecastController.GetStudents (DemoList)'
+2022-01-20 16:20:27.884 +07:00 [INF] Route matched with {action = "GetStudents", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.List`1[DemoList.Student] GetStudents() on controller DemoList.Controllers.WeatherForecastController (DemoList).
+2022-01-20 16:20:27.895 +07:00 [INF] huan
+2022-01-20 16:20:27.914 +07:00 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DemoList.Student, DemoList, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-01-20 16:20:27.934 +07:00 [INF] Executed action DemoList.Controllers.WeatherForecastController.GetStudents (DemoList) in 37.9587ms
+2022-01-20 16:20:27.944 +07:00 [INF] Executed endpoint 'DemoList.Controllers.WeatherForecastController.GetStudents (DemoList)'
+2022-01-20 16:20:27.947 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7228/WeatherForecast/Student - - - 200 - application/json;+charset=utf-8 94.2001ms
