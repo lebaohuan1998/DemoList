@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DemoList.Controllers
@@ -18,7 +19,7 @@ namespace DemoList.Controllers
             _logger = logger;
         }
 
-        [HttpGet( "GetWeatherForecast")]
+        [HttpGet("GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
@@ -29,7 +30,7 @@ namespace DemoList.Controllers
             })
             .ToArray();
         }
-
+        [DisableCors]
         [HttpGet("Student")]
         public List<Student> GetStudents()
         {
@@ -44,7 +45,7 @@ namespace DemoList.Controllers
                 list.Add(student);
             }
             return list;
-            
+
         }
     }
 }

@@ -1,20 +1,28 @@
+using DemoList.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Serilog;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<DatabaseContext>(options =>
+    options.UseSqlServer(connectionString: builder.Configuration.GetConnectionString("sqlConnection"))
+);
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       builder =>
                       {
-                          builder.WithOrigins("http://example.com",
-                                              "http://www.contoso.com");
+                          /*builder.WithOrigins("http://example.com",
+                                              "http://www.contoso.com");*/
+                          builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                       });
 });
 
-builder.Host.UseSerilog((context, config) => 
+builder.Host.UseSerilog((context, config) =>
 {
     config.WriteTo.Console();
     config.WriteTo.File("log.txt");
