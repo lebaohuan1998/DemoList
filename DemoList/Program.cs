@@ -1,4 +1,7 @@
+using DemoList.Configurations;
 using DemoList.Data;
+using DemoList.IRepository;
+using DemoList.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Serilog;
@@ -21,6 +24,13 @@ builder.Services.AddCors(options =>
                           builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                       });
 });
+
+builder.Services.AddAutoMapper(typeof(Mapperinitilizer));
+
+builder.Services.AddTransient<IUnitOfWork,UnitOfWork>();
+
+builder.Services.AddControllers().AddNewtonsoftJson(op => 
+op.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 builder.Host.UseSerilog((context, config) =>
 {
@@ -50,5 +60,8 @@ app.UseCors(MyAllowSpecificOrigins);
 app.UseAuthorization();
 
 app.MapControllers();
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

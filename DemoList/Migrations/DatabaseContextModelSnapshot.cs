@@ -33,7 +33,6 @@ namespace DemoList.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -117,12 +116,17 @@ namespace DemoList.Migrations
             modelBuilder.Entity("DemoList.Data.Student", b =>
                 {
                     b.HasOne("DemoList.Data.Course", "Course")
-                        .WithMany()
+                        .WithMany("Students")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("DemoList.Data.Course", b =>
+                {
+                    b.Navigation("Students");
                 });
 #pragma warning restore 612, 618
         }

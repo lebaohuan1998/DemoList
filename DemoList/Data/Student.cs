@@ -11,6 +11,6 @@ namespace DemoList.Data
 
         [ForeignKey(nameof(Course))]
         public int CourseId { get; set; }
-        public Course? Course { get; set; }  
+        public Course Course { get; set; }  
     }
 }
