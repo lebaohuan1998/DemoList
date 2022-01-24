@@ -8,45 +8,45 @@ namespace DemoList.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CourseController : ControllerBase
+    public class StudentController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ILogger<CourseController> _logger;
+        private readonly ILogger<StudentController> _logger;
         private readonly IMapper _mapper;
 
-        public CourseController(IUnitOfWork unitOfWork, ILogger<CourseController> logger, IMapper mapper)
+        public StudentController(IUnitOfWork unitOfWork, ILogger<StudentController> logger, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _logger = logger;
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<IActionResult> GetCourses()
+        public async Task<IActionResult> GetStudents()
         {
             try
             {
-                var courses = await _unitOfWork.Courses.GetAll(null,null, new List<string> { "Students" });
-                var results = _mapper.Map<IList<CourseDTO>>(courses);
+                var students = await _unitOfWork.Students.GetAll(null, null,new List<string> { "Course" });
+                var results = _mapper.Map<IList<StudentDTO>>(students);
                 return Ok(results);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong in the  {nameof(GetCourses)}");
+                _logger.LogError($"Something went wrong in the  {nameof(GetStudents)}");
                 return StatusCode(500, "Internal Server Error . Please Try again later.");
             }
         }
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetCourseById(int id)
+        public async Task<IActionResult> GetStudentById(int id)
         {
             try
             {
-                var course = await _unitOfWork.Courses.Get(q => q.Id == id, new List<string> { "Students" });
-                var results = _mapper.Map<CourseDTO>(course);
+                var student = await _unitOfWork.Students.Get(q => q.Id == id, new List<string> { "Course" });
+                var results = _mapper.Map<StudentDTO>(student);
                 return Ok(results);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong in the  {nameof(GetCourseById)}");
+                _logger.LogError($"Something went wrong in the  {nameof(GetStudentById)}");
                 return StatusCode(500, "Internal Server Error . Please Try again later.");
             }
         }

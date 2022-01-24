@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemoList.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220124085540_SeedingData")]
+    [Migration("20220124132301_SeedingData")]
     partial class SeedingData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -95,7 +95,7 @@ namespace DemoList.Migrations
                             Address = "address1",
                             Age = 1,
                             CourseId = 1,
-                            Name = "Course1"
+                            Name = "Student1"
                         },
                         new
                         {
@@ -103,7 +103,7 @@ namespace DemoList.Migrations
                             Address = "address2",
                             Age = 2,
                             CourseId = 1,
-                            Name = "Course2"
+                            Name = "Student2"
                         },
                         new
                         {
@@ -111,7 +111,15 @@ namespace DemoList.Migrations
                             Address = "address3",
                             Age = 3,
                             CourseId = 2,
-                            Name = "Course3"
+                            Name = "Student3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Address = "address4",
+                            Age = 4,
+                            CourseId = 3,
+                            Name = "Student4"
                         });
                 });
 

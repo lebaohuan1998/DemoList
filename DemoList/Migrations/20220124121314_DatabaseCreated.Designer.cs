@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemoList.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220124085339_DatabaseCreated")]
+    [Migration("20220124121314_DatabaseCreated")]
     partial class DatabaseCreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

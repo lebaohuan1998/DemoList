@@ -32,7 +32,7 @@ namespace DemoList.Data
                 new Student
                 {
                     Id = 1,
-                    Name = "Course1",
+                    Name = "Student1",
                     Age = 1,
                     Address = "address1",
                     CourseId = 1,
@@ -40,7 +40,7 @@ namespace DemoList.Data
                 new Student
                 {
                     Id = 2,
-                    Name = "Course2",
+                    Name = "Student2",
                     Age = 2,
                     Address = "address2",
                     CourseId = 1,
@@ -48,10 +48,18 @@ namespace DemoList.Data
                 new Student
                 {
                     Id = 3,
-                    Name = "Course3",
+                    Name = "Student3",
                     Age = 3,
                     Address = "address3",
                     CourseId = 2
+                },
+                new Student
+                {
+                    Id = 4,
+                    Name = "Student4",
+                    Age = 4,
+                    Address = "address4",
+                    CourseId = 3
                 }
                 );
         }

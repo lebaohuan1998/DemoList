@@ -30,22 +30,5 @@ namespace DemoList.Controllers
             })
             .ToArray();
         }
-        [DisableCors]
-        [HttpGet("Student")]
-        public List<Student> GetStudents()
-        {
-            _logger.LogInformation("huan");
-            List<Student> list = new List<Student>();
-            for (int i = 0; i < 20; i++)
-            {
-                Student student = new Student();
-                student.StudentName = "huan" + i;
-                student.Age = i;
-                student.Address = "h" + i;
-                list.Add(student);
-            }
-            return list;
-
-        }
     }
 }
