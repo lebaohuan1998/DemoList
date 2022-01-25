@@ -17,6 +17,7 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 
 builder.Services.AddAuthentication();
 builder.Services.ConfigureIdentity();
+builder.Services.ConfigureJWT(builder.Configuration);
 
 builder.Services.AddCors(options =>
 {

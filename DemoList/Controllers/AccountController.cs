@@ -35,15 +35,16 @@ namespace DemoList.Controllers
             {
                 var user =_mapper.Map<ApiUser>(userDTO);
                 user.UserName = userDTO.Email;
-                var result = await _userManager.CreateAsync(user);
+                var result = await _userManager.CreateAsync(user, userDTO.Password);
                 if (!result.Succeeded)
                 {
                     foreach (var error in result.Errors)
                     {
                         ModelState.AddModelError(error.Code, error.Description);
                     }
-                    return BadRequest(ModelState); 
+                    return BadRequest(ModelState);
                 }
+                await _userManager.AddToRolesAsync(user, userDTO.Roles);
                 return Accepted();
             }
             catch (Exception ex)
