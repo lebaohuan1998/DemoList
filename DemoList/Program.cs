@@ -1,3 +1,4 @@
+using DemoList;
 using DemoList.Configurations;
 using DemoList.Data;
 using DemoList.IRepository;
@@ -14,6 +15,9 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlServer(connectionString: builder.Configuration.GetConnectionString("sqlConnection"))
 );
 
+builder.Services.AddAuthentication();
+builder.Services.ConfigureIdentity();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -29,13 +33,14 @@ builder.Services.AddAutoMapper(typeof(Mapperinitilizer));
 
 builder.Services.AddTransient<IUnitOfWork,UnitOfWork>();
 
+
 builder.Services.AddControllers().AddNewtonsoftJson(op => 
 op.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 builder.Host.UseSerilog((context, config) =>
 {
     config.WriteTo.Console();
-    config.WriteTo.File("log.txt");
+    //config.WriteTo.File("log.txt");
 });
 // Add services to the container.
 

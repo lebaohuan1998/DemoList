@@ -3221,3 +3221,40 @@ WHERE [s].[Id] = @__id_0
 2022-01-24 20:24:54.570 +07:00 [INF] Executed action DemoList.Controllers.StudentController.GetStudentById (DemoList) in 23.8314ms
 2022-01-24 20:24:54.571 +07:00 [INF] Executed endpoint 'DemoList.Controllers.StudentController.GetStudentById (DemoList)'
 2022-01-24 20:24:54.573 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7228/api/Student/4 - - - 200 134 application/json;+charset=utf-8 32.4565ms
+2022-01-25 08:53:37.764 +07:00 [INF] Now listening on: https://localhost:7228
+2022-01-25 08:53:37.817 +07:00 [INF] Now listening on: http://localhost:5228
+2022-01-25 08:53:37.822 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-01-25 08:53:37.824 +07:00 [INF] Hosting environment: Development
+2022-01-25 08:53:37.825 +07:00 [INF] Content root path: C:\Users\HuanToCon\source\repos\DemoList\DemoList\
+2022-01-25 08:53:39.815 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7228/swagger/index.html - -
+2022-01-25 08:53:41.368 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7228/swagger/index.html - - - 200 - text/html;charset=utf-8 1556.9090ms
+2022-01-25 08:53:41.634 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7228/_framework/aspnetcore-browser-refresh.js - -
+2022-01-25 08:53:41.756 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7228/_framework/aspnetcore-browser-refresh.js - - - 200 11942 application/javascript;+charset=utf-8 120.8373ms
+2022-01-25 08:53:42.274 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7228/swagger/v1/swagger.json - -
+2022-01-25 08:53:42.727 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7228/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 453.1393ms
+2022-01-25 08:53:58.244 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7228/api/Student/1 - -
+2022-01-25 08:53:58.266 +07:00 [INF] Executing endpoint 'DemoList.Controllers.StudentController.GetStudentById (DemoList)'
+2022-01-25 08:53:58.323 +07:00 [INF] Route matched with {action = "GetStudentById", controller = "Student"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetStudentById(Int32) on controller DemoList.Controllers.StudentController (DemoList).
+2022-01-25 08:53:59.997 +07:00 [INF] Entity Framework Core 6.0.1 initialized 'DatabaseContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.1' with options: None
+2022-01-25 08:54:03.193 +07:00 [INF] Executed DbCommand (93ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[Address], [s].[Age], [s].[CourseId], [s].[Name], [c].[Id], [c].[Class], [c].[Name]
+FROM [Students] AS [s]
+INNER JOIN [Courses] AS [c] ON [s].[CourseId] = [c].[Id]
+WHERE [s].[Id] = @__id_0
+2022-01-25 08:54:03.393 +07:00 [INF] Executing OkObjectResult, writing value of type 'DemoList.Models.StudentDTO'.
+2022-01-25 08:54:03.671 +07:00 [INF] Executed action DemoList.Controllers.StudentController.GetStudentById (DemoList) in 5332.6299ms
+2022-01-25 08:54:03.674 +07:00 [INF] Executed endpoint 'DemoList.Controllers.StudentController.GetStudentById (DemoList)'
+2022-01-25 08:54:03.684 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7228/api/Student/1 - - - 200 133 application/json;+charset=utf-8 5439.9685ms
+2022-01-25 08:54:12.180 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7228/api/Course - -
+2022-01-25 08:54:12.187 +07:00 [INF] Executing endpoint 'DemoList.Controllers.CourseController.GetCourses (DemoList)'
+2022-01-25 08:54:12.193 +07:00 [INF] Route matched with {action = "GetCourses", controller = "Course"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCourses() on controller DemoList.Controllers.CourseController (DemoList).
+2022-01-25 08:54:12.263 +07:00 [INF] Entity Framework Core 6.0.1 initialized 'DatabaseContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.1' with options: None
+2022-01-25 08:54:12.393 +07:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Class], [c].[Name], [s].[Id], [s].[Address], [s].[Age], [s].[CourseId], [s].[Name]
+FROM [Courses] AS [c]
+LEFT JOIN [Students] AS [s] ON [c].[Id] = [s].[CourseId]
+ORDER BY [c].[Id]
+2022-01-25 08:54:12.410 +07:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DemoList.Models.CourseDTO, DemoList, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-01-25 08:54:12.415 +07:00 [INF] Executed action DemoList.Controllers.CourseController.GetCourses (DemoList) in 218.1559ms
+2022-01-25 08:54:12.419 +07:00 [INF] Executed endpoint 'DemoList.Controllers.CourseController.GetCourses (DemoList)'
+2022-01-25 08:54:12.421 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7228/api/Course - - - 200 374 application/json;+charset=utf-8 241.5074ms

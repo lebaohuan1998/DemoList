@@ -21,6 +21,8 @@ namespace DemoList.Controllers
             _mapper = mapper;
         }
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetStudents()
         {
             try
@@ -36,6 +38,8 @@ namespace DemoList.Controllers
             }
         }
         [HttpGet("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetStudentById(int id)
         {
             try
@@ -50,5 +54,23 @@ namespace DemoList.Controllers
                 return StatusCode(500, "Internal Server Error . Please Try again later.");
             }
         }
+        [HttpGet("{name}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetStudentByName(string name)
+        {
+            try
+            {
+                var students = await _unitOfWork.Students.GetAll(q => q.Name == name, null, new List<string> { "Course" });
+                var results = _mapper.Map<IList<StudentDTO>>(students);
+                return Ok(results);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong in the  {nameof(GetStudents)}");
+                return StatusCode(500, "Internal Server Error . Please Try again later.");
+            }
+        }
+
     }
 }

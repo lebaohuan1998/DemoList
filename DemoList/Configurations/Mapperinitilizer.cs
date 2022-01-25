@@ -12,6 +12,10 @@ namespace DemoList.Configurations
             CreateMap<Course, CreateCoureDTO>().ReverseMap();
             CreateMap<Student, StudentDTO>().ReverseMap();
             CreateMap<Student, CreateStudentDTO>().ReverseMap();
+            CreateMap<ApiUser, UserDTO>().ReverseMap();
+            CreateMap<UserDTO, ApiUser>().ReverseMap();
+
+
         }
     }
 }

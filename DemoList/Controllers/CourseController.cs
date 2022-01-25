@@ -21,6 +21,8 @@ namespace DemoList.Controllers
             _mapper = mapper;
         }
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetCourses()
         {
             try
@@ -36,6 +38,8 @@ namespace DemoList.Controllers
             }
         }
         [HttpGet("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetCourseById(int id)
         {
             try
