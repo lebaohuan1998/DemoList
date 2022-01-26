@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using DemoList.Data;
 using DemoList.IRepository;
 using DemoList.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,7 +39,7 @@ namespace DemoList.Controllers
                 return StatusCode(500, "Internal Server Error . Please Try again later.");
             }
         }
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}", Name = "GetStudent")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetStudentById(int id)
@@ -61,13 +63,87 @@ namespace DemoList.Controllers
         {
             try
             {
-                var students = await _unitOfWork.Students.GetAll(q => q.Name == name, null, new List<string> { "Course" });
+                var students = await _unitOfWork.Students.GetAll(q => q.Name.Contains(name), null, new List<string> { "Course" });
                 var results = _mapper.Map<IList<StudentDTO>>(students);
                 return Ok(results);
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Something went wrong in the  {nameof(GetStudents)}");
+                return StatusCode(500, "Internal Server Error . Please Try again later.");
+            }
+        }
+        [Authorize(Roles = "Administrator")]
+        [HttpPost]
+        public async Task<IActionResult> CreateStudent([FromBody] CreateStudentDTO studentDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var student = _mapper.Map<Student>(studentDTO);
+                await _unitOfWork.Students.Insert(student);
+                await _unitOfWork.Save();
+                return CreatedAtRoute("GetStudent", new { id = student.Id }, student);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong in the  {nameof(CreateStudent)}");
+                return StatusCode(500, "Internal Server Error . Please Try again later.");
+            }
+        }
+        [Authorize(Roles = "Administrator")]
+        [HttpPut]
+        public async Task<IActionResult> UpdateStudent([FromBody] UpdateStudentDTO studentDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var student = await _unitOfWork.Students.Get(q => q.Id == studentDTO.Id);
+
+                if (student == null)
+                {
+                    return BadRequest("Submit data is invalidate");
+                }
+                _mapper.Map(studentDTO,student);
+                _unitOfWork.Students.Update(student);
+                await _unitOfWork.Save();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong in the  {nameof(UpdateStudent)}");
+                return StatusCode(500, "Internal Server Error . Please Try again later.");
+            }
+        }
+        [Authorize(Roles = "Administrator")]
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> DeleteStudent(int id)
+        {
+            if(id < 1)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                var student = await _unitOfWork.Students.Get(q => q.Id == id);
+
+                if (student == null)
+                {
+                    return BadRequest("Submit data is invalidate");
+                }
+                await _unitOfWork.Students.Delete(id);
+                await _unitOfWork.Save();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong in the  {nameof(DeleteStudent)}");
                 return StatusCode(500, "Internal Server Error . Please Try again later.");
             }
         }

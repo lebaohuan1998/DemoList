@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemoList.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220125132339_SeedingData")]
-    partial class SeedingData
+    [Migration("20220126022236_DatabaseCreated")]
+    partial class DatabaseCreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,26 +40,6 @@ namespace DemoList.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Courses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Class = "Class1",
-                            Name = "Course1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Class = "Class2",
-                            Name = "Course2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Class = "Class3",
-                            Name = "Course3"
-                        });
                 });
 
             modelBuilder.Entity("DemoList.Data.Student", b =>
@@ -87,40 +67,6 @@ namespace DemoList.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("Students");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "address1",
-                            Age = 1,
-                            CourseId = 1,
-                            Name = "Student1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "address2",
-                            Age = 2,
-                            CourseId = 1,
-                            Name = "Student2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Address = "address3",
-                            Age = 3,
-                            CourseId = 2,
-                            Name = "Student3"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Address = "address4",
-                            Age = 4,
-                            CourseId = 3,
-                            Name = "Student4"
-                        });
                 });
 
             modelBuilder.Entity("DemoList.Data.Student", b =>

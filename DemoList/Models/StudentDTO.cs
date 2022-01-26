@@ -19,4 +19,8 @@ namespace DemoList.Models
         public string? Address { get; set; }
         public int CourseId { get; set; }
     }
+    public class UpdateStudentDTO : CreateStudentDTO
+    {
+        public int Id { get; set; }
+    }
 }

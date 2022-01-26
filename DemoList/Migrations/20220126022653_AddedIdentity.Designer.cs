@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemoList.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220125171529_AddedDefaultRoles")]
-    partial class AddedDefaultRoles
+    [Migration("20220126022653_AddedIdentity")]
+    partial class AddedIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -222,22 +222,6 @@ namespace DemoList.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "0368b5d4-d064-470a-9842-aae96ba33e7a",
-                            ConcurrencyStamp = "c1aea6d1-9fe5-4673-a9ea-14a2c4f143ab",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        },
-                        new
-                        {
-                            Id = "1fd6e4c2-5677-4f63-a9c5-3a50aa1c0c52",
-                            ConcurrencyStamp = "e5e2dd75-e526-443c-a02b-2713791be2c4",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

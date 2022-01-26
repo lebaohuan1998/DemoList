@@ -224,15 +224,15 @@ namespace DemoList.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0368b5d4-d064-470a-9842-aae96ba33e7a",
-                            ConcurrencyStamp = "c1aea6d1-9fe5-4673-a9ea-14a2c4f143ab",
+                            Id = "c289290d-bfa5-4708-b958-4668e608bbbd",
+                            ConcurrencyStamp = "e3554a88-78e7-4030-bb65-60f6e9b02f8c",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "1fd6e4c2-5677-4f63-a9c5-3a50aa1c0c52",
-                            ConcurrencyStamp = "e5e2dd75-e526-443c-a02b-2713791be2c4",
+                            Id = "7fbf6a2d-9959-42d2-932b-fd6a78c509f0",
+                            ConcurrencyStamp = "465f3585-3701-46cb-ab75-ffb58dac5f7b",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

@@ -3,6 +3,7 @@ using DemoList.Configurations;
 using DemoList.Data;
 using DemoList.IRepository;
 using DemoList.Repository;
+using DemoList.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Serilog;
@@ -31,7 +32,8 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddAutoMapper(typeof(Mapperinitilizer));
-
+builder.Services.AddScoped<IAuthManager , AuthManager>();
+   
 builder.Services.AddTransient<IUnitOfWork,UnitOfWork>();
 
 
@@ -62,6 +64,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors(MyAllowSpecificOrigins);
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

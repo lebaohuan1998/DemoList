@@ -18,6 +18,7 @@ namespace DemoList
         public static void ConfigureJWT(this IServiceCollection services,IConfiguration Configuration)
         {
             var jwtSettings = Configuration.GetSection("Jwt");
+            Environment.SetEnvironmentVariable("KEY", "b3dd6621-1d8a-42af-bb99-456f02407933");
             var key = Environment.GetEnvironmentVariable("KEY");
 
             services.AddAuthentication(o =>
@@ -29,9 +30,10 @@ namespace DemoList
                 o.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
+                    ValidateAudience = false,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = jwtSettings.GetSection("Issue").Value,
+                    ValidIssuer = jwtSettings.GetSection("Issuer").Value,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
                 };
             });
