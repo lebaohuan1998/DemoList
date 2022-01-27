@@ -18,7 +18,7 @@ namespace DemoList
         public static void ConfigureJWT(this IServiceCollection services,IConfiguration Configuration)
         {
             var jwtSettings = Configuration.GetSection("Jwt");
-            Environment.SetEnvironmentVariable("KEY", "b3dd6621-1d8a-42af-bb99-456f02407933");
+            //Environment.SetEnvironmentVariable("KEY", "b3dd6621-1d8a-42af-bb99-456f02407933");
             var key = Environment.GetEnvironmentVariable("KEY");
 
             services.AddAuthentication(o =>

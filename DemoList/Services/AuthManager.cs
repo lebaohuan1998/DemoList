@@ -60,7 +60,7 @@ namespace DemoList.Services
 
         private SigningCredentials GetSigningCredentials()
         {
-            Environment.SetEnvironmentVariable("KEY", "b3dd6621-1d8a-42af-bb99-456f02407933");
+            //Environment.SetEnvironmentVariable("KEY", "b3dd6621-1d8a-42af-bb99-456f02407933");
             var key = Environment.GetEnvironmentVariable("KEY");
             var secret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
