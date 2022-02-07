@@ -1,7 +1,9 @@
 ﻿using DemoList.Data;
 using DemoList.IRepository;
+using DemoList.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using X.PagedList;
 
 namespace DemoList.Repository
 {
@@ -62,6 +64,30 @@ namespace DemoList.Repository
             }
 
             return await query.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<IPagedList<T>> GetAll(Expression<Func<T, bool>> expression = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, List<string> includes = null, RequestParams requestParams = null)
+        {
+            IQueryable<T> query = _db;
+            if (expression != null)
+            {
+                query = query.Where(expression);
+            }
+
+            if (includes != null)
+            {
+                foreach (var includeProperty in includes)
+                {
+                    query = query.Include(includeProperty);
+                }
+            }
+
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+            }
+
+            return await query.AsNoTracking().ToPagedListAsync(requestParams.PageNumber == 0 ? 1 : requestParams.PageNumber, requestParams.PageSize);
         }
 
         public async Task Insert(T entity)

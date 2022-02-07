@@ -25,11 +25,11 @@ namespace DemoList.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetStudents()
+        public async Task<IActionResult> GetStudents([FromQuery] RequestParams requestParams)
         {
             try
             {
-                var students = await _unitOfWork.Students.GetAll(null, null,new List<string> { "Course" });
+                var students = await _unitOfWork.Students.GetAll(null, null,new List<string> { "Course" }, requestParams);
                 var results = _mapper.Map<IList<StudentDTO>>(students);
                 return Ok(results);
             }
@@ -40,21 +40,15 @@ namespace DemoList.Controllers
             }
         }
         [HttpGet("{id:int}", Name = "GetStudent")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetStudentById(int id)
         {
-            try
+            var student = await _unitOfWork.Students.Get(q => q.Id == id, new List<string> { "Course" });
+            if (student == null)
             {
-                var student = await _unitOfWork.Students.Get(q => q.Id == id, new List<string> { "Course" });
-                var results = _mapper.Map<StudentDTO>(student);
-                return Ok(results);
+                throw new Exception();
             }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Something went wrong in the  {nameof(GetStudentById)}");
-                return StatusCode(500, "Internal Server Error . Please Try again later.");
-            }
+            var results = _mapper.Map<StudentDTO>(student);
+            return Ok(results);
         }
         [HttpGet("{name}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

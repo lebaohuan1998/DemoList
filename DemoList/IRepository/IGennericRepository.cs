@@ -1,4 +1,6 @@
-﻿using System.Linq.Expressions;
+﻿using DemoList.Models;
+using System.Linq.Expressions;
+using X.PagedList;
 
 namespace DemoList.IRepository
 {
@@ -8,6 +10,12 @@ namespace DemoList.IRepository
             Expression<Func<T, bool>> expression = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             List<string> includes = null
+            );
+        Task<IPagedList<T>> GetAll(
+            Expression<Func<T, bool>> expression = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+            List<string> includes = null,
+            RequestParams requestParams = null
             );
         Task<T> Get(Expression<Func<T, bool>> expression, List<string> includes = null);
         Task Insert(T entity);

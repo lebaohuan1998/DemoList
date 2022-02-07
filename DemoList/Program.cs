@@ -1,11 +1,12 @@
+using AspNetCoreRateLimit;
 using DemoList;
 using DemoList.Configurations;
 using DemoList.Data;
 using DemoList.IRepository;
 using DemoList.Repository;
 using DemoList.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Serilog;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -16,7 +17,12 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlServer(connectionString: builder.Configuration.GetConnectionString("sqlConnection"))
 );
 
-builder.Services.AddAuthentication();
+builder.Services.AddMemoryCache();
+
+builder.Services.ConfigureRateLimiting();
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.ConfigureHttpCacheHeader();
 builder.Services.ConfigureIdentity();
 builder.Services.ConfigureJWT(builder.Configuration);
 
@@ -39,6 +45,7 @@ builder.Services.AddTransient<IUnitOfWork,UnitOfWork>();
 
 builder.Services.AddControllers().AddNewtonsoftJson(op => 
 op.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+builder.Services.ConfigureVersioning();
 
 builder.Host.UseSerilog((context, config) =>
 {
@@ -47,7 +54,13 @@ builder.Host.UseSerilog((context, config) =>
 });
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(config =>
+{
+    config.CacheProfiles.Add("120SecondsDuration", new CacheProfile
+    {
+        Duration = 120
+    });
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -61,9 +74,18 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.ConfigureExceptionHandler();
 app.UseHttpsRedirection();
 
 app.UseCors(MyAllowSpecificOrigins);
+
+app.UseResponseCaching();
+
+app.UseHttpCacheHeaders();
+
+app.UseIpRateLimiting();
+
+app.UseRouting();
 
 app.UseAuthentication();
 
